@@ -1,11 +1,9 @@
 import React from 'react';
-import style from './Footer.module.css';
+import { FooterStyled } from './Footer.styled';
 
 const Footer = () => {
     return(
-        <div className={style.contentFooter}>
-           Kitchener © 2020
-        </div>
+        <FooterStyled>Test © 2022</FooterStyled>
     );
 }
 

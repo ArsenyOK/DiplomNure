@@ -1,4 +1,6 @@
-.contentFooter {
+import styled from 'styled-components';
+
+export const FooterStyled = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -6,4 +8,4 @@
     padding: 30px;
     background: #222222;
     color: #fff;
-}
+`;
