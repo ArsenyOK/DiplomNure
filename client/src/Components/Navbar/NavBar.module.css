@@ -1,0 +1,166 @@
+.fragment, .guestContainer {
+    display: flex;
+    align-items: center;
+}
+
+#header a {
+    text-decoration: none;
+    font-weight: 600;
+}
+
+#header .mb-5 {
+    margin-bottom: 0px;
+}
+
+.categoryContainer {
+    padding: 13px;
+    background: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.categoryContainer ul {
+    display: flex;
+    margin-bottom: 0px;
+    width: 1140px;
+    justify-content: space-around;
+}
+
+.categoryContainer ul li a {
+    color: #2d2d2d;
+}
+
+.categoryContainer ul li {
+    /* margin-right: 30px; */
+}
+
+.categoryContainer ul li:last-child {
+    margin-right: 0px;
+}
+
+.icon {
+    margin-right: 10px;
+}
+
+
+.fragment a, .guestContainer a {
+    margin-right: 20px;
+    color: #bcbcbc;
+}
+
+.fragment a:hover, .guestContainer a:hover {
+    margin-right: 20px;
+    color: #79CC7D;
+}
+
+a.active, a.btnAdd .active {
+    color: #79CC7D;
+}
+
+.nameUser {
+    margin-right: 20px;
+    color: #bcbcbc;
+    font-weight: bold;
+}
+
+a.btnAdd {
+    border-radius: 8px;
+    background: green;
+    padding: 8px;
+    color: #fff;
+    transition: .4s all;
+}
+
+.btnAdd:hover {
+    background: green;
+    color: #abc;
+}
+
+.logo {
+    width: 130px;
+}
+
+@media screen and (max-width: 991px) {
+    .fragment a, .guestContainer a {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 864px) {
+    .categoryContainer {
+        display: none;
+    }
+
+    #header {
+        margin-bottom: 3rem;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .fragment li a:hover, .guestContainer li a:hover {
+        margin-right: 0px;
+    }
+
+    .fragment li.boxAdd {
+        margin-top: 20px;
+    }
+
+    .guestContainer li:nth-child(3) a, .guestContainer li:last-child a {
+        margin-top: 0px;
+        padding: 0;
+    }
+
+    .guestContainer li {
+        margin-bottom: 10px;
+    }
+}
+
+
+@media screen and (max-width: 767px) {
+    .fragment li.nameUser a {
+       margin-right: 0px;
+       text-align: center;
+       display: flex;
+    }
+
+    .fragment li.btnAdd {
+        font-size: 10px;
+        width: 100px;
+    }
+}
+
+@media screen and (max-width: 586px) {
+    .fragment a, .guestContainer a {
+        margin-right: 5px;
+    }
+}
+
+@media (min-width: 700px) {
+    .navbar-expand-sm {
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .fragment, .guestContainer {
+        flex-direction: column;
+    }
+
+    .fragment a, .guestContainer a {
+        margin-right: 0px;
+        margin-top: 20px;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+    }
+
+    .fragment a:last-child {    
+    }
+
+    .nameUser {
+        margin-right: 0px;
+    }
+}

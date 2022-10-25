@@ -1,0 +1,10 @@
+.generalBtn {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 628px) {
+    .generalBtn button:first-child {
+        margin-right: 30px;
+    }
+}

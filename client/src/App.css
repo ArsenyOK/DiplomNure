@@ -1,0 +1,53 @@
+.remove-btn {
+    margin-right: 0.5rem;
+}
+
+.fade-enter {
+    opacity: 0.01;
+}
+
+.fade-enter-active {
+    opacity: 1;
+    transition: opacity 1000ms ease-in;
+}
+
+.fade-exit {
+    opacity: 1;
+}
+
+.fade-exit-active {
+    opacity: 0.01;
+    transition: opacity 1000ms ease-in;
+}
+
+main {
+    min-height: 100vh;
+    margin-bottom: 3rem;
+}
+
+
+
+button.react-scrolltop-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: #fff;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 1350px) {
+    #spinner {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .input-group {
+        padding: 20px;
+    }
+}

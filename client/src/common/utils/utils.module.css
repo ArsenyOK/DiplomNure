@@ -1,0 +1,18 @@
+.error {
+    color: red;
+    margin-top: 10px;
+}
+
+.fieldType.errorType, .fieldType.errorType {
+    border: 2px solid red;
+}
+
+.contaierText {
+    text-align: left;
+}
+
+.contaierText input, .contaierText textarea, .contaierText select {
+    margin-top: 5px;
+    border: 2px solid #2d2d2d;
+}
+

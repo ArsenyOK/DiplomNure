@@ -1,0 +1,78 @@
+.recipeChange {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+.recipeChange .aboveTitle {
+    margin: 0 100px;
+    width: 20%;
+}
+
+.recipeChange .buttonModify {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.recipeChange .buttonModify .btnDelete {
+    margin-top: 20px;
+}
+
+.recipeChange .btnDelete {
+    margin-left: 20px;
+}
+
+.wrapper .titleUser{
+    text-align: center;
+  
+}
+
+.wrapper .titleUser .nameUser{
+    text-align: left;
+}
+
+.wrapper .photoRecipe {
+    
+}
+
+.wrapper .photoRecipe img{
+    width: 350px;
+    height: 200px;
+    border-radius: 4px;
+}
+
+@media screen and (max-width: 991px) {
+    .recipeChange {
+        flex-direction: column;
+    }
+
+    .recipeChange .aboveTitle {
+        width: 100px;
+        width: 50%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .recipeChange .buttonModify {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .recipeChange .buttonModify .btnDelete {
+        margin-top: 0px;
+    }
+
+    .recipeChange .photoRecipe {
+        margin-bottom: 20px;
+        margin-top: 40px;
+    }
+
+    .recipeChange .photoRecipe img {
+        width: 450px;
+        height: 270px;
+    }
+}

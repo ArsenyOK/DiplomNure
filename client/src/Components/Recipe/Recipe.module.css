@@ -1,0 +1,141 @@
+.containerRecipe {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.mainInformation {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.box .step {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.preloader {
+    width: 100%;
+    text-align: center;
+    margin-top: 250px;
+}
+
+.title h2 {
+    font-size: 2.5rem;
+}
+
+.title {
+    margin-bottom: 20px;
+}
+
+.contentImg img {
+    width: 700px;
+    height: auto;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+    border-radius: 6px;
+}
+
+.ingredients {
+    width: 100%;
+    background: #C0C6CC;
+    padding: 10px 20px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.ingredients ul {
+    list-style: none;
+    text-align: left;
+    margin-left: 30px;
+}
+
+.ingredients ul li {
+    margin-bottom: 5px;
+}
+
+.ingredients ul li:last-child {
+    margin-bottom: 0px;
+}
+
+.loveFood {
+    font-size: 22px;
+    margin: 20px 0;
+    color: rgba(43, 199, 50, 0.808);
+}
+
+.contentRecipe h3, .contentRecipe p  {
+    text-align: left;
+}
+
+.containerRecipe .boxDescription {
+    margin-top: 20px;
+}
+
+.contentRecipe p {
+    margin-left: 30px;
+    text-indent: 20px;
+}
+
+.instructionsContainer {
+    margin-top: 20px;
+}
+
+.instructionsContainer p {
+    text-align: left;
+    margin-left: 0px;
+    text-indent: 0px;
+    margin-bottom: 0px;
+}
+
+.instructionsContainer .box p:nth-child(2) {
+    text-indent: 20px;
+}
+
+.instructionsContainer .box:first-child {
+    margin-top: 20px;
+}
+
+.instructionsContainer .box {
+    margin: 40px 0;
+}
+
+.instructionsContainer .box img {
+    margin-top: 10px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+
+
+.instructionsContainer .box p:first-child {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+@media screen and (max-width: 727px) {
+    .contentImg img {
+        width: 100%;
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+    .contentImg img, .instructionsContainer .box img {
+        width: 80%;
+    }
+
+    .title h2 {
+        font-size: 2rem;
+    }
+
+    .contentRecipe h3  {
+        font-size: 1rem
+    }
+    
+    .contentRecipe p {
+        font-size: 16px;
+    }
+}

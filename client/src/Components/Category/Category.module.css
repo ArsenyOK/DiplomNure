@@ -1,0 +1,105 @@
+.containerListCategory {
+
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.linkTitle h3, .linkTitle p {
+    text-decoration: none;
+    color: #2d2d2d;
+}
+
+.titleLink {
+    text-decoration: none;
+}
+
+.containerListCategory {
+    display: flex;
+}
+
+.containerList {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.recipescategory {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.containerList h2 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.allRecipes div h2 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.card {
+    width: 350px;
+    margin-top: 38px;
+}
+
+
+.media {
+    height: 250px;
+}
+
+@media screen and (max-width: 1199px) {
+    .containerList .card {
+       width: 280px;
+    }
+    
+}
+
+
+@media screen and (max-width: 991px) {
+    .containerList .card {
+        width: 650px;
+    }
+    
+    .allRecipes {
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 680px) {
+    .containerList .card {
+        width: 400px;
+    }
+}
+
+@media screen and (max-width: 454px) {
+    .containerList .card {
+        width: 320px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .allRecipes {
+        display: flex;
+        width: 1140px;
+        flex-wrap: wrap;
+    }
+
+    .card:first-child, .card:nth-child(2n), .card:nth-child(2n + 1) {
+        margin-right: 44px;
+    }
+    
+    .card:nth-child(3), .card:nth-child(6), .card:nth-child(9), .card:nth-child(12), .card:nth-child(15), .card:nth-child(18) {
+        margin-right: 0px;
+    }
+}

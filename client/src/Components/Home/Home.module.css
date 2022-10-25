@@ -1,0 +1,264 @@
+.homePage {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.mainBlock {
+    display: flex;
+    width: 80vw;
+    height: 350px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+.mainBlock .dishesPhoto img {
+    height: 350px;
+    width: auto;
+}
+
+.mainBlock .textAbout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #79CC7D;
+    text-align: left;
+    padding: 0 20px;
+    border-left: 2px solid #222;
+}
+
+.categories {
+    margin-top: 50px;
+}
+
+.categories h2 {
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    text-align: center;
+}
+
+.containerCategories {
+    display: flex;
+    flex-direction: column;
+}
+
+.containerCategories .box {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.containerCategories .box:last-child {
+    margin-bottom: 0px;
+}
+
+.containerCategories .box .itemRecipe {
+    margin-right: 20px;
+    position: relative;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+    width: 350px;
+    height: 210px;
+}
+
+.containerCategories .box a.itemRecipe {
+    text-decoration: none;
+}
+
+.containerCategories .box .itemRecipe .itemText {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerCategories .box:first-child .itemRecipe:first-child {
+    background: url("./../../images/dish_1.jpg") no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.containerCategories .box:first-child .itemRecipe:nth-child(2) {
+    background: url("./../../images/dish_2.jpg") no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.containerCategories .box:first-child .itemRecipe:nth-child(3) {
+    background: url("./../../images/dish_3.jpg") no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.containerCategories .box:nth-child(2) .itemRecipe:first-child {
+    background: url("./../../images/dish_4.jpg") no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.containerCategories .box:nth-child(2) .itemRecipe:nth-child(2) {
+    background: url("./../../images/dish_5.jpg") no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.containerCategories .box:nth-child(2) .itemRecipe:nth-child(3) {
+    background: url("./../../images/dish_6.jpg") no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.containerCategories .box:nth-child(3) .itemRecipe:first-child {
+    background: url("./../../images/dish_7.JPG") no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.containerCategories .box:nth-child(3) .itemRecipe:nth-child(2) {
+    background: url("./../../images/dish_8.jpg") no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.containerCategories .box:nth-child(3) .itemRecipe:nth-child(3) {
+    background: url("./../../images/dish_9.jpg") no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.containerCategories .box .itemRecipe h3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    color: #fff;
+    font-size: 1.5em;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    text-transform: uppercase;
+}
+
+.containerCategories .itemRecipe:last-child {
+    margin-right: 0px;
+}
+
+@media screen and (max-width: 1289px) {
+    .mainBlock {
+        width: 90vw;
+    }
+}
+
+@media screen and (max-width: 1120px) {
+    .containerCategories .box {
+        flex-direction: column;
+        justify-content: center;
+    }
+    .containerCategories .box .itemRecipe {
+        margin-right: 0px;
+        margin-bottom: 40px;
+        width: 450px;
+        height: 310px;
+    }
+    .containerCategories .box .itemRecipe:last-child {
+        margin-bottom: 0px;
+    }
+
+    .containerCategories .box .itemRecipe:last-child {
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 1019px) {
+    .mainBlock {
+        width: 90vw;
+        height: 350px;
+    }
+    .mainBlock .dishesPhoto img {
+        width: 400px;
+        height: 350px;
+    }
+    .mainBlock .textAbout {
+        padding: 20px;
+        font-size: 16px;
+    }
+    .categories {
+        margin-top: 120px;
+    }
+}
+
+@media screen and (max-width: 864px) {
+    .mainBlock .textAbout{
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 777px) {
+    .mainBlock {
+        flex-direction: column;
+        width: 80vw;
+    }
+
+    .mainBlock .dishesPhoto img {
+        width: 100%;
+        height: auto;
+    }
+
+    .mainBlock .textAbout {
+        position:absolute;
+        width: 100%;
+        height: 100%;
+        color: #fff;
+        background: rgba(0, 0, 0, 0.5);
+        border: none;
+        font-size: 14px;
+    }
+
+    .categories {
+        margin-top: 80px;
+    }
+}
+
+
+@media screen and (max-width: 633px) {
+    .mainBlock .dishesPhoto img {
+        width: auto;
+        height: 100%;
+    }
+}
+
+@media screen and (max-width: 525px) {
+    .mainBlock {
+        width: 90vw;
+        margin: 0;
+    }
+    .mainBlock .dishesPhoto img {
+        width: auto;
+        height: 100%;
+    }
+    .mainBlock .textAbout {
+        font-size: 14px;
+    }
+    .categories {
+        margin-top: 70px;
+        width: 100%;
+    }
+
+    .containerCategories .box .itemRecipe {
+        width: 100%;
+        height: 215px;
+    }
+}
+
+@media screen and (max-width: 392px) {
+    .containerCategories .box .itemRecipe .itemText h3 {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 340px) {
+    .containerCategories .box .itemRecipe .itemText h3 {
+        font-size: 17px;
+    }
+}

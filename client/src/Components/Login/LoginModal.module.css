@@ -1,0 +1,14 @@
+.registerModal {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.registerModal p {
+    cursor: pointer;
+    color: #8BCE89;
+}
+
+.registerModal p:hover {
+    text-decoration: underline;
+}

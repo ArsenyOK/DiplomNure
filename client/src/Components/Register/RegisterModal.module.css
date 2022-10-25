@@ -1,0 +1,23 @@
+.activeModal {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.activeModal .enter {
+    color: #8BCE89;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.activeModal .enter:hover {
+    text-decoration: underline;
+}
+
+.modalHeader {
+    text-align: center;
+}
+
+.registerModal .form-control {
+    background: #C5E7C6;
+}
