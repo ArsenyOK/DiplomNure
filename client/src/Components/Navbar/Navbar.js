@@ -99,7 +99,7 @@ class AppNavbar extends Component {
             </Collapse>
           </Container>
         </Navbar>
-        <div className={style.categoryContainer}>
+        {/* <div className={style.categoryContainer}>
           <ul>
             <li>
               <NavLink to="/category/Первые блюда">Первые блюда</NavLink>
@@ -126,7 +126,7 @@ class AppNavbar extends Component {
               <NavLink to="/recipes">Все рецепты</NavLink>
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
     );
   }
