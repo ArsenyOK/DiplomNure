@@ -23,8 +23,10 @@ router.post('/create', upload.single('image'), (req, res, next) => {
     });
 })
 
-router.get("/image", function (req, res, next) {
-    Image.findOne({}, function (err, image) {
+router.get("/image/:name", function (req, res, next) {
+    const ImageName = req.params.name;
+
+    Image.findOne({name: ImageName}, function (err, image) {
         if (err) { return next(err); }
         res.contentType(image.img.contentType)
         res.send(image.img.data);
