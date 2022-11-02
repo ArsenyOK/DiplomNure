@@ -27,7 +27,7 @@ const RecipePresentasion = ({ newContent }) => {
                 <h2>{newContent.title}</h2>
             </div>
             <div className={style.contentImg}>
-                <img src={newContent.urlPhoto} alt="recipePhoto" />
+                <img src={`data:image/jpg;base64, ${newContent.img.data}`} alt="recipePhoto" />
             </div>
         </div>
     )

@@ -1,6 +1,18 @@
 const express = require('express');
 const app = express.Router();
 const auth = require('../../middleware/auth');
+const multer = require('multer');
+
+const img = multer({
+    limits:{
+        fileSize:1000000,
+    },
+    fileFilter(req,file,cb){
+        if(!file.originalname.match(/\.(jpg|png|JPG|PNG|JPEG|jpeg)$/))
+        return cb(new Error('This is not a correct format of the file'))
+        cb(undefined,true)
+    }
+})
 
 // Recipe Model
 const Recipe = require('../../models/Recipe')
@@ -67,9 +79,30 @@ app.get(`/edit-recipe/:id`, (req, res) => {
 });
 
 
-app.post(`/`, (req, res) => {
-    let newRecipe = Recipe.create(req.body);
-    newRecipe.save().then(recipe => res.json(recipe));
+app.post(`/`, img.single('img'), async (req, res) => {
+    // let newRecipe;
+    // res.json(newRecipe, 'newRecipe');
+
+
+    const recipeModel = new Recipe({
+        title: req.body.title,
+        category: req.body.category,
+        description: req.body.description,
+        img: req.file.buffer
+    });
+
+    // recipeModel.img = req.file.buffer;
+    
+    // res.send(recipeModel, 'recipeModel');
+
+    try {
+        recipeModel.save().then(recipe => {
+            res.send('Recipes is uploaded Success!')
+            res.send(recipe)
+        })
+    } catch (e) {
+        res.send('Errors!!!', e)
+    }
 });
 
 app.put(`/update-recipe/:id`, async (req, res) => {

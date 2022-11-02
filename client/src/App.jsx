@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import NavBar from './Components/Navbar/Navbar';
 import ListShop from './Components/List/ListContainer';
 import Home from './Components/Home/Home';
 import { Provider } from 'react-redux';
@@ -19,6 +18,7 @@ import CategoryContainer from './Components/Category/CategoryContainer';
 import Header from './componentsBox/Header/Header';
 import { AppWrapper, Main } from './componentsBox/styled-components';
 import Footer from './componentsBox/Footer/Footer';
+import Navbar from './Components/Navbar/Navbar';
 
 
 const App = () => {
@@ -29,7 +29,8 @@ const App = () => {
   return (
     <Provider store={store}>
       <AppWrapper>
-        <Header />
+        <Navbar />
+        {/* <Header /> */}
         <Main>
           <Container>
             <Route exact path="/" render={() => <Home />} />

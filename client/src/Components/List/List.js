@@ -88,12 +88,15 @@ const List = ({
                 <div className={style.allRecipes}>
                     {
                         !temp && filterRecipe.map((r) => {
+
+                            const img = new Buffer.from(r.img.data).toString("base64")
+                            console.log(img, 'img')
                             return <Card className={style.card}>
                                 <CardActionArea>
                                     <NavLink onClick={(e) => { onChangeRecipe(r.id) }} to={`/recipe/${r.id}`}>
                                         <CardMedia
                                             className={style.media}
-                                            image={r.urlPhoto}
+                                            image={`data:image/jpg;base64, ${img}`}
                                             title={r.title}
                                         />
                                     </NavLink>

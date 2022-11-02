@@ -12,9 +12,8 @@ const recipeSchema = new Schema({
         type: String,
         required: true
     },
-    urlPhoto: {
-        type: String,
-        required: true
+    img: {
+        type: Buffer
     },
     description: {
         type: String,
