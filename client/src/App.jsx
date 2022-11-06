@@ -29,8 +29,8 @@ const App = () => {
   return (
     <Provider store={store}>
       <AppWrapper>
-        <Navbar />
-        {/* <Header /> */}
+        {/* <Navbar /> */}
+        <Header />
         <Main>
           <Container>
             <Route exact path="/" render={() => <Home />} />

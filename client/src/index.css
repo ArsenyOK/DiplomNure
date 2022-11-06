@@ -3,6 +3,10 @@
     margin: 0;
 }
 
+body {
+    font-family: Roboto, 'sans-serif';
+}
+
 #root {
     overflow: hidden;
 }
