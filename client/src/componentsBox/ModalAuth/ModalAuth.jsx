@@ -1,25 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import { Modal, Box, Button } from '@mui/material';
 import { ContentModal } from '../styled-components';
-
-
-const LoginStep = ({ handleStepAuth }) => {
-    return (
-        <Box>
-            <h2>Login Step</h2>
-            <button onClick={() => handleStepAuth('')}>back</button>
-        </Box>
-    )
-}
-
-const RegisterStep = ({ handleStepAuth }) => {
-    return (
-        <Box>
-            <h2>Regsiter Step</h2>
-            <button onClick={() => handleStepAuth('')}>back</button>
-        </Box>
-    )
-}
+import LoginStep from './LoginStep';
+import { ContentModalLogin } from './LoginStep/styled';
+import RegisterStep from './RegisterStep';
+import { ContentModalRegister } from './RegisterStep/styled';
 
 const BasicStep = ({ handleStepAuth }) => {
     return (
@@ -37,25 +22,30 @@ const BasicStep = ({ handleStepAuth }) => {
 const ModalAuth = ({ open, handleClose }) => {
     const [stepAuth, setStepAuth] = useState('');
 
-    const handleStepAuth = (step) => {
+    const handleStepAuth = useCallback((step) => {
         setStepAuth(step);
-    }
+    }, [setStepAuth])
+
+    const clearStepOnClose = useCallback(() => {
+        handleClose();
+        setStepAuth('');
+    }, [handleClose, setStepAuth])
 
     return (
         <Modal
             open={open}
-            onClose={handleClose}
+            onClose={clearStepOnClose}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
         >
             {
                 stepAuth === '' ? <ContentModal>
                     <BasicStep handleStepAuth={handleStepAuth} />
-                </ContentModal> : stepAuth === 'login' ? <ContentModal>
-                    <LoginStep handleStepAuth={handleStepAuth} />
-                </ContentModal> : <ContentModal>
+                </ContentModal> : stepAuth === 'login' ? <ContentModalLogin>
+                    <LoginStep clearStepOnClose={clearStepOnClose} handleStepAuth={handleStepAuth} />
+                </ContentModalLogin> : <ContentModalRegister>
                     <RegisterStep handleStepAuth={handleStepAuth} />
-                </ContentModal>
+                </ContentModalRegister>
             }
         </Modal>
     )

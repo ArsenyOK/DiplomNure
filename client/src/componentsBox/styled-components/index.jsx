@@ -9,6 +9,7 @@ export const AppWrapper = styled.div`
 
 export const Main = styled.main`
     min-height: 80vh;
+    margin-top: 10vh;
 `;
 
 export const ContentModal = styled.div`
@@ -17,7 +18,7 @@ export const ContentModal = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
     width: 500px;
-    height: 250px;
+    height: 150px;
     background: #fff;
     box-shadow: 24;
     padding: 10px;
