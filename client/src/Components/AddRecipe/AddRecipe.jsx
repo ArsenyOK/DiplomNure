@@ -123,7 +123,7 @@ import axios from 'axios';
 
 const AddRecipe = () => {
     const categories = ["Первые блюда", "Вторые блюда", "Салаты", "Закуски", "Десерты", "Выпечка", "Соусы", "Напитки", "Другие"];
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit } = useForm();
     const [photoImg, setPhotoImg] = useState([]);
 
     const onChangeImg = (e) => {

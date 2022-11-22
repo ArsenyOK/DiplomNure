@@ -19,6 +19,7 @@ import Header from './componentsBox/Header/Header';
 import { AppWrapper, Main } from './componentsBox/styled-components';
 import Footer from './componentsBox/Footer/Footer';
 import Navbar from './Components/Navbar/Navbar';
+import UserPage from './componentsBox/UserTab/UserPage';
 
 
 const App = () => {
@@ -49,7 +50,8 @@ const App = () => {
               return <RecipeContainer />
             }} />
             <Route path="/user" render={() => {
-              return <UserContainer />
+              return <UserPage />
+              // return <UserContainer />
             }} />
             <Route path="/updaterecipe/:id" render={() => {
               return <UpdateRecipeContainer />

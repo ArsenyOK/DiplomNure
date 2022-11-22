@@ -12,6 +12,8 @@ const User = ({ user, ownRecipes, onChangeRecipe, onDeleteClick, data }) => {
 
     const toggle = () => setWindow(!modalWindow);
 
+    console.log(ownRecipes, 'ownRecipes')
+
     if (!user) {
         return <Redirect to="/" />
     }
