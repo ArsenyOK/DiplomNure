@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { categoriesArray } from '../common/dataList';
 import Button from '@mui/material/Button';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { Popover, ListItem, List } from '@mui/material';
 import ModalAuth from '../../ModalAuth/ModalAuth';
 import { logout } from '../../../store/actions/authActions';
@@ -11,6 +11,7 @@ const AuthLinks = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const [modalOpen, setModalOpen] = useState(false);
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const toggleModal = () => {
         setModalOpen((prev) => !prev);
@@ -26,6 +27,10 @@ const AuthLinks = () => {
 
     const Logout = () => {
         dispatch(logout());
+    }
+
+    const pushPage = (url) => {
+        history.push(url);
     }
 
     const open = Boolean(anchorEl);
@@ -62,6 +67,7 @@ const AuthLinks = () => {
                 </Popover>
                 <li>About</li>
                 <li>Contact</li>
+                <li onClick={() => pushPage('/user')}>Profile</li>
                 <li onClick={Logout}>Logout</li>
                 {/* <ModalAuth open={modalOpen} handleClose={toggleModal} /> */}
             </ul>
