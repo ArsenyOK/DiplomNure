@@ -13,6 +13,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import style from './List.module.css';
 import { sortByCategory } from './../../common/sorts/sortByCategort';
+import RecipesItem from '../../componentsBox/RecipesPage/RecipeItem/RecipesItem';
 
 const useStyles = makeStyles({
     card: {
@@ -43,10 +44,6 @@ const List = ({
 
     let updateSearch = (e) => {
         setSearch(e.target.value.substr(0, 20));
-    }
-
-    if (loading) {
-        return <Spinner style={{ width: '3rem', height: '3rem' }} />
     }
 
     let temp = category;
@@ -88,32 +85,7 @@ const List = ({
                 <div className={style.allRecipes}>
                     {
                         !temp && filterRecipe.map((r) => {
-
-                            const img = new Buffer.from(r.img.data).toString("base64")
-                            console.log(img, 'img')
-                            return <Card className={style.card}>
-                                <CardActionArea>
-                                    <NavLink onClick={(e) => { onChangeRecipe(r.id) }} to={`/recipe/${r.id}`}>
-                                        <CardMedia
-                                            className={style.media}
-                                            image={`data:image/jpg;base64, ${img}`}
-                                            title={r.title}
-                                        />
-                                    </NavLink>
-                                    <CardContent>
-                                        <Typography gutterBottom variant="h5" component="h2">
-                                            <h3>{r.title}</h3>
-                                        </Typography>
-                                        <Typography variant="body2" color="textSecondary" component="p">
-                                            {r.description.substring(0, 25) + " . . ."}
-                                        </Typography>
-                                    </CardContent>
-                                </CardActionArea>
-                                <CardActions>
-                                    <NavLink onClick={(e) => { onChangeRecipe(r.id) }} to={`/recipe/${r.id}`}>Подробнее</NavLink>
-                                </CardActions>
-                            </Card>
-
+                            return <RecipesItem key={r._id} recipe={r} onChangeRecipe={onChangeRecipe}  />
                         })
                     }
                 </div>

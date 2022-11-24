@@ -139,7 +139,7 @@ const AddRecipe = () => {
         formData.append('category', data.categories);
         formData.append('description', data.description);
         formData.append('img', photoImg);
-
+        console.log(photoImg, 'photoImg function')
         // const buffer = new ArrayBuffer(photoImg);
         // console.log(buffer, 'buffer');
 

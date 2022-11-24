@@ -20,6 +20,8 @@ import { AppWrapper, Main } from './componentsBox/styled-components';
 import Footer from './componentsBox/Footer/Footer';
 import Navbar from './Components/Navbar/Navbar';
 import UserPage from './componentsBox/UserTab/UserPage';
+import RecipesList from './componentsBox/RecipesPage/RecipesList/RecipesList';
+import RecipePage from './componentsBox/RecipesPage/RecipeInfoPage/RecipePage';
 
 
 const App = () => {
@@ -37,7 +39,8 @@ const App = () => {
             <Route exact path="/" render={() => <Home />} />
             <Route path="/recipes" render={() => {
               return <div>
-                <ListShop />
+                {/* <ListShop /> */}
+                <RecipesList />
               </div>
             }} />
             <Route path="/category/:catg" render={() => {
@@ -47,7 +50,8 @@ const App = () => {
               return <AddRecipeContainer />
             }} />
             <Route exact path="/recipe/:id" render={() => {
-              return <RecipeContainer />
+              // return <RecipeContainer />
+              return <RecipePage />
             }} />
             <Route path="/user" render={() => {
               return <UserPage />
@@ -57,13 +61,13 @@ const App = () => {
               return <UpdateRecipeContainer />
             }} />
           </Container>
-          <ScrollTop
+          {/* <ScrollTop
             text={<ArrowUpwardIcon />}
             distance={200}
             speed={400}
             icon={<ArrowUpwardIcon />}
             id={"spinner"}
-          />
+          /> */}
         </Main>
         <Footer />
       </AppWrapper>

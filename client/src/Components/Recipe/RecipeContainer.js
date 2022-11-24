@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { getCurrentRecipe } from './../../store/actions/itemAction';
 import { compose } from 'redux';
 import { withRouter } from 'react-router-dom';
-import { Redirect } from 'react-router-dom';
 
 class RecipeContainer extends React.Component {
 

@@ -33,6 +33,17 @@ export const loadUser = () => (dispatch, getState) => {
     });
 };
 
+export const updateUserData = (user, id) => (dispatch, getState) => {
+  axios.put(`/api/auth/user/${id}`, user).then(res => {
+    dispatch(loadUser());
+  }).catch((err) => {
+    dispatch(returnErrors(err.response.data, err.response.status));
+    dispatch({
+      type: AUTH_ERROR
+    });
+  })
+}
+
 // Register User
 export const register = ({ name, email, password }) => dispatch => {
   // Headers

@@ -1,29 +1,70 @@
-import React, { useEffect, useState, useCallback, useMemo } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getItems } from '../../store/actions/itemAction';
 import CircularProgress from '@mui/material/CircularProgress';
-import { BoxUserInfo, ContainerUserPage } from './styled/userPage.styled';
-import { Button } from '@mui/material';
-import { useForm } from 'react-hook-form';
+import { BoxUserInfo, ContainerBtnUser, ContainerUserPage } from './styled/userPage.styled';
+import { Button, TextField, Box } from '@mui/material';
+import { CustomBox } from '../styled-components';
+import { updateUserData } from '../../store/actions/authActions';
 
 const UserPage = () => {
     const dispatch = useDispatch();
     const [editMode, setEditMode] = useState(false);
     const [userName, setUserName] = useState('');
     const [userEmail, setUserEmail] = useState('');
+    // const [photoImg, setPhotoImg] = useState([]);
 
-    const { user } = useSelector((store) => store.auth);
-    const { recipes } = useSelector((store) => store.recipes);
-    const { data } = useSelector((store) => store.load);
+    const { user, isLoading } = useSelector((store) => store.auth);
+    // const { recipes } = useSelector((store) => store.recipes);
+    const { msg } = useSelector((store) => store.error);
 
-    const { register, handleSubmit } = useForm();
+    // const onChangeImg = (e) => {
+    //     setPhotoImg(e.target.files[0]);
+    // }
+
+    const onChangeName = (e) => {
+        setUserName(e.target.value);
+    }
+
+    const onChangeEmail = (e) => {
+        setUserEmail(e.target.value);
+    }
 
     const ChangeEditMode = () => {
         setEditMode(prev => !prev);
     }
 
-    const onSubmit = (data) => {
-        console.log(data);
+    const onCloseEditMode = () => {
+        ChangeEditMode();
+        setUserName(user.name);
+        setUserEmail(user.email);
+    }
+
+
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        // const formData = new FormData();
+        // formData.append('name', userName);
+        // formData.append('email', userEmail);
+        // formData.append('avatar', photoImg);
+
+        // console.log(formData.get('avatar'))
+
+        if (userName !== '' && userEmail !== '') {
+            const userData = {
+                name: userName,
+                email: userEmail,
+                // avatar: photoImg
+            }
+
+            dispatch(updateUserData(userData, user._id));
+
+
+            if (!!msg) {
+                onCloseEditMode();
+            }
+        }
     }
 
     useEffect(() => {
@@ -49,18 +90,35 @@ const UserPage = () => {
     return (
         <ContainerUserPage>
             <h2>Profile</h2>
-            {
-                editMode ? <BoxUserInfo>
-                    {user && <form onSubmit={handleSubmit(onSubmit)}><input type="text" {...register("name")} />
-                        <input type="text" {...register("email")} />
-                        <input type="submit" value="click blya" />
-                        </form>}
-                </BoxUserInfo> : <BoxUserInfo>
-                    <h4>{user.name}</h4>
-                    <p>{user.email}</p>
-                </BoxUserInfo>
-            }
-            <Button onClick={() => ChangeEditMode()}>Edit data</Button>
+            <form onSubmit={onSubmit}>
+                {
+                    editMode ? <BoxUserInfo>
+                        {user && <>
+                            <CustomBox>
+                                <TextField required value={userName} onChange={(e) => onChangeName(e)} id="outlined-basic" label="Your name" variant="outlined" />
+                            </CustomBox>
+                            <CustomBox>
+                                <TextField required value={userEmail} onChange={(e) => onChangeEmail(e)} id="outlined-basic" label="Your email" variant="outlined" />
+                            </CustomBox>
+                            {/* <CustomBox>
+                                <input onChange={(e) => onChangeImg(e)} accept="image/*" type="file" placeholder="photo" />
+                            </CustomBox> */}
+                        </>}
+                    </BoxUserInfo> : <BoxUserInfo>
+                        {isLoading ? <CircularProgress size={30} /> : <>
+                            <h4>{user.name}</h4>
+                            <p>{user.email}</p>
+                        </>}
+                    </BoxUserInfo>
+                }
+                {
+                    editMode ? <ContainerBtnUser>
+                        <Button type="submit" variant="contained">Edit</Button>
+                        <Button variant="contained" color="error" onClick={() => onCloseEditMode()}>Close</Button>
+                    </ContainerBtnUser> :
+                        !isLoading && <Button variant="contained" onClick={() => ChangeEditMode()}>Edit data</Button>
+                }
+            </form>
         </ContainerUserPage>
     )
 }

@@ -9,3 +9,11 @@ export const ContainerUserPage = styled.div`
 export const BoxUserInfo = styled.div`
 
 `;
+
+export const ContainerBtnUser = styled.div`
+    display: flex;
+
+    button:first-child {
+        margin-right: 10px;
+    }
+`;

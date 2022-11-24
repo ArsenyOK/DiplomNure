@@ -33,3 +33,7 @@ export const ContentModal = styled.div`
         margin-bottom: 20px;
     } 
 `;
+
+export const CustomBox = styled.div`
+    margin-bottom: 10px;
+`;

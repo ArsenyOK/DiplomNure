@@ -1,14 +1,12 @@
 import React from 'react';
 import style from './Recipe.module.css';
 import { Spinner } from 'reactstrap';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Recipe = (props) => {
-    if (props.loading) {
-        return <div className={style.preloader}>
-            <Spinner style={{ width: '3rem', height: '3rem' }} />
-        </div>
+    if (props.loading || !props.newContent) {
+        return <CircularProgress size={50} />
     }
-
 
     return (
         <div className={style.containerRecipe}>
@@ -21,16 +19,20 @@ const Recipe = (props) => {
 }
 
 const RecipePresentasion = ({ newContent }) => {
-    return (
-        <div>
-            <div className={style.title}>
-                <h2>{newContent.title}</h2>
+    console.log(newContent, 'newContent')
+    if (newContent.img.data) {
+        const img = new Buffer.from(newContent.img.data).toString("base64");
+        return (
+            <div>
+                <div className={style.title}>
+                    <h2>{newContent.title}</h2>
+                </div>
+                <div className={style.contentImg}>
+                    <img src={`data:image/jpg;base64, ${img}`} alt="recipePhoto" />
+                </div>
             </div>
-            <div className={style.contentImg}>
-                <img src={`data:image/jpg;base64, ${newContent.img.data}`} alt="recipePhoto" />
-            </div>
-        </div>
-    )
+        )
+    }
 }
 
 const RecipeInformation = ({ newContent }) => {
@@ -50,11 +52,11 @@ const RecipeInformation = ({ newContent }) => {
                                 return <li key={id}>{`${j++}. ${ing.nameOfProduct} - ${ing.amount} ${ing.type}`}
                                 </li>
                             }
-                            else if(!ing.amount) {
+                            else if (!ing.amount) {
                                 return <li key={id}>{`${j++}. ${ing.nameOfProduct}`}
                                 </li>
-                            } 
-                            else if(!ing.type) {
+                            }
+                            else if (!ing.type) {
                                 return <li key={id}>{`${j++}. ${ing.nameOfProduct} - ${ing.amount}`}
                                 </li>
                             }
