@@ -9,14 +9,14 @@ import GuestLinks from "./UserLinks/GuestLinks";
 // const navItems = ['Home', 'About', 'Contact', 'CategoryBox'];
 
 const Header = (props) => {
-  const { isAuthenticated } = useSelector((store) => store.auth);
-  return (
-    <HeaderBox>
-      <div className="header-logo">
-        <NavLink to="/">Logo</NavLink>
-      </div>
-      {!isAuthenticated ? <GuestLinks /> : <AuthLinks />}
-    </HeaderBox>
-  );
+    const { isAuthenticated } = useSelector((store) => store.auth);
+    return (
+        <HeaderBox>
+            <div className="header-logo">
+                <NavLink to="/">Logo</NavLink>
+            </div>
+            {!isAuthenticated ? <GuestLinks /> : <AuthLinks />}
+        </HeaderBox>
+    );
 };
 export default Header;

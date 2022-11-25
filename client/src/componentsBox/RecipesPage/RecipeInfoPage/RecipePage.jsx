@@ -5,47 +5,51 @@ import Recipe from "../../../Components/Recipe/Recipe";
 import { getCurrentRecipe } from "../../../store/actions/itemAction";
 
 const RecipePage = () => {
-  const params = useParams();
-  const { currentRecipe, loading } = useSelector((store) => store.recipes);
-  const dispatch = useDispatch();
+    const params = useParams();
+    const { currentRecipe, loading } = useSelector((store) => store.recipes);
+    const dispatch = useDispatch();
 
-  const onChangeRecipe = (recipeId) => {
-    dispatch(getCurrentRecipe(recipeId));
-  };
+    const onChangeRecipe = (recipeId) => {
+        dispatch(getCurrentRecipe(recipeId));
+    };
 
-  const refreshRecipe = () => {
-    window.scrollTo(0, 0);
-    if (params.id !== undefined) {
-      let id = params.id;
+    const refreshRecipe = () => {
+        window.scrollTo(0, 0);
+        if (params.id !== undefined) {
+            let id = params.id;
 
-      onChangeRecipe(id);
-      dispatch(getCurrentRecipe(id));
+            onChangeRecipe(id);
+            dispatch(getCurrentRecipe(id));
+        }
+    };
+
+    const updateRefreshRecipe = useCallback(() => {
+        if (params.id !== undefined) {
+            refreshRecipe();
+        }
+    }, [params.id]);
+
+    useEffect(() => {
+        refreshRecipe();
+    }, []);
+
+    useEffect(() => {
+        updateRefreshRecipe();
+    }, [updateRefreshRecipe]);
+
+    if (params.id !== undefined && !currentRecipe) {
+        return <>Loading...</>;
     }
-  };
 
-  const updateRefreshRecipe = useCallback(() => {
-    if (params.id !== undefined) {
-      refreshRecipe();
-    }
-  }, [params.id]);
+    console.log(currentRecipe, "currentRecipe");
 
-  useEffect(() => {
-    refreshRecipe();
-  }, []);
-
-  useEffect(() => {
-    updateRefreshRecipe();
-  }, [updateRefreshRecipe]);
-
-  if (params.id !== undefined && !currentRecipe) {
-    return <>Loading...</>;
-  }
-
-  console.log(currentRecipe, "currentRecipe");
-
-  return (
-    <Recipe idRecipe={params.id} newContent={currentRecipe} loading={loading} />
-  );
+    return (
+        <Recipe
+            idRecipe={params.id}
+            newContent={currentRecipe}
+            loading={loading}
+        />
+    );
 };
 
 export default RecipePage;
