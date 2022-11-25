@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import { categoriesArray } from '../common/dataList';
-import Button from '@mui/material/Button';
-import { NavLink } from 'react-router-dom';
-import { Popover, ListItem, List } from '@mui/material';
-import ModalAuth from '../../ModalAuth/ModalAuth';
+import React, { useState } from "react";
+import { categoriesArray } from "../common/dataList";
+import Button from "@mui/material/Button";
+import { NavLink } from "react-router-dom";
+import { Popover, ListItem, List } from "@mui/material";
+import ModalAuth from "../../ModalAuth/ModalAuth";
 
 const GuestLinks = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -11,7 +11,7 @@ const GuestLinks = () => {
 
     const toggleModal = () => {
         setModalOpen((prev) => !prev);
-    }
+    };
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -22,31 +22,41 @@ const GuestLinks = () => {
     };
 
     const open = Boolean(anchorEl);
-    const id = open ? 'simple-popover' : undefined;
+    const id = open ? "simple-popover" : undefined;
 
     return (
         <div className="header-list">
             <ul>
-                <Button onClick={handleClick} variant="contained">Categories</Button>
+                <Button onClick={handleClick} variant="contained">
+                    Categories
+                </Button>
                 <Popover
                     id={id}
                     open={open}
                     anchorEl={anchorEl}
                     onClose={handleClose}
                     anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'left',
+                        vertical: "bottom",
+                        horizontal: "left",
                     }}
                 >
-                    <List
-                        subheader={<li />}
-                    >
+                    <List subheader={<li />}>
                         {categoriesArray.map((element, value) => (
                             <li key={`section-${element}`}>
                                 <ul>
                                     <ListItem onClick={handleClose} key={value}>
                                         {/* <ListItemText primary={`Item ${element}`} /> */}
-                                        <NavLink to={`/category/${element}`}>{element}</NavLink>
+                                        {element === "All" ? (
+                                            <NavLink to={`/recipes`}>
+                                                All recipes
+                                            </NavLink>
+                                        ) : (
+                                            <NavLink
+                                                to={`/category/${element}`}
+                                            >
+                                                {element}
+                                            </NavLink>
+                                        )}
                                     </ListItem>
                                 </ul>
                             </li>
@@ -59,7 +69,7 @@ const GuestLinks = () => {
                 <ModalAuth open={modalOpen} handleClose={toggleModal} />
             </ul>
         </div>
-    )
-}
+    );
+};
 
-export default GuestLinks
+export default GuestLinks;

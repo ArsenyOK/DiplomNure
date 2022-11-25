@@ -52,9 +52,17 @@ const AuthLinks = () => {
                                 <ul>
                                     <ListItem onClick={handleClose} key={value}>
                                         {/* <ListItemText primary={`Item ${element}`} /> */}
-                                        <NavLink to={`/category/${element}`}>
-                                            {element}
-                                        </NavLink>
+                                        {element === "All" ? (
+                                            <NavLink to={`/recipes`}>
+                                                All recipes
+                                            </NavLink>
+                                        ) : (
+                                            <NavLink
+                                                to={`/category/${element}`}
+                                            >
+                                                {element}
+                                            </NavLink>
+                                        )}
                                     </ListItem>
                                 </ul>
                             </li>

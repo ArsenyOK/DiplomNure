@@ -42,7 +42,11 @@ const App = () => {
                         <Route
                             path="/category/:catg"
                             render={() => {
-                                return <CategoryContainer />;
+                                return (
+                                    <div>
+                                        <RecipesList />
+                                    </div>
+                                );
                             }}
                         />
                         <Route

@@ -1,10 +1,19 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import { useHistory } from 'react-router-dom';
+import * as React from "react";
+import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import { useHistory } from "react-router-dom";
 
-const categoriesArray = ['First meal', 'Main courses', 'Salads', 'Snacks', 'Desserts', 'Bakery', 'Sauces', 'All recipes'];
+const categoriesArray = [
+    "First meal",
+    "Main courses",
+    "Salads",
+    "Snacks",
+    "Desserts",
+    "Bakery",
+    "Sauces",
+    " ",
+];
 
 const CategoryBox = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -15,8 +24,13 @@ const CategoryBox = () => {
         setAnchorEl(event.currentTarget);
     };
     const handleClose = (param) => {
-        history.push(`/category/${param}`);
-        setAnchorEl(null);
+        if (param === " ") {
+            history.push(`/`);
+            setAnchorEl(null);
+        } else {
+            history.push(`/category/${param}`);
+            setAnchorEl(null);
+        }
     };
 
     return (
@@ -24,9 +38,9 @@ const CategoryBox = () => {
             <Button
                 color="inherit"
                 id="basic-button"
-                aria-controls={open ? 'basic-menu' : undefined}
+                aria-controls={open ? "basic-menu" : undefined}
                 aria-haspopup="true"
-                aria-expanded={open ? 'true' : undefined}
+                aria-expanded={open ? "true" : undefined}
                 onClick={handleClick}
             >
                 Categories
@@ -37,17 +51,24 @@ const CategoryBox = () => {
                 open={open}
                 onClose={handleClose}
                 MenuListProps={{
-                    'aria-labelledby': 'basic-button',
+                    "aria-labelledby": "basic-button",
                 }}
             >
-                {
-                    categoriesArray.map((item) => {
-                        return <MenuItem key={item} onClick={() => {handleClose(item)}}>{item}</MenuItem>
-                    })
-                }
+                {categoriesArray.map((item) => {
+                    return (
+                        <MenuItem
+                            key={item}
+                            onClick={() => {
+                                handleClose(item);
+                            }}
+                        >
+                            {item}
+                        </MenuItem>
+                    );
+                })}
             </Menu>
         </div>
     );
-}
+};
 
 export default CategoryBox;
