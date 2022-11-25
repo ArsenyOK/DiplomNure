@@ -1,33 +1,9 @@
-import React, { useState } from 'react';
-import { ListGroup, Row } from 'reactstrap';
-import { TransitionGroup } from 'react-transition-group';
-import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
-import { InputGroup, InputGroupAddon, Input, Spinner } from 'reactstrap';
-import { NavLink } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
-import style from './List.module.css';
-import { sortByCategory } from './../../common/sorts/sortByCategort';
-import RecipesItem from '../../componentsBox/RecipesPage/RecipeItem/RecipesItem';
-
-const useStyles = makeStyles({
-    card: {
-        width: 600,
-    },
-    media: {
-        height: 300,
-    },
-
-    // cardImg: {
-    //     width: 600,
-    //     height
-    // }
-});
+import React, { useState } from "react";
+import { Row } from "reactstrap";
+import { Pagination, PaginationItem, PaginationLink } from "reactstrap";
+import { InputGroup, InputGroupAddon, Input } from "reactstrap";
+import style from "./List.module.css";
+import RecipesItem from "../../componentsBox/RecipesPage/RecipeItem/RecipesItem";
 
 const List = ({
     loading,
@@ -37,22 +13,20 @@ const List = ({
     recipeCount,
     pageSize,
     currentPage,
-    onChangePageRecipes
+    onChangePageRecipes,
 }) => {
     const [search, setSearch] = useState("");
     const [categories, setCategories] = useState("");
 
     let updateSearch = (e) => {
         setSearch(e.target.value.substr(0, 20));
-    }
+    };
 
     let temp = category;
 
-    let filterRecipe = recipes.filter(
-        (recipe) => {
-            return recipe.title.toLowerCase().indexOf(search.toLowerCase()) !== -1;
-        }
-    );
+    let filterRecipe = recipes.filter((recipe) => {
+        return recipe.title.toLowerCase().indexOf(search.toLowerCase()) !== -1;
+    });
 
     let pagesCount = Math.ceil(recipeCount / pageSize);
     let pages = [];
@@ -62,48 +36,78 @@ const List = ({
 
     const changePage = (p) => {
         onChangePageRecipes(p);
-    }
+    };
 
     return (
         <Row>
             <InputGroup>
                 <InputGroupAddon addonType="prepend">Поиск</InputGroupAddon>
-                <Input onChange={(e) => { updateSearch(e) }} type="text" value={search} />
+                <Input
+                    onChange={(e) => {
+                        updateSearch(e);
+                    }}
+                    type="text"
+                    value={search}
+                />
             </InputGroup>
             <div className={style.pagination}>
                 <Pagination aria-label="Page navigation example">
-                    {
-                        pages.length > 1 && pages.map(p => {
-                            return <PaginationItem>
-                                <PaginationLink onClick={() => { changePage(p) }} className={currentPage === p && style.selected}>{p}</PaginationLink>
-                            </PaginationItem>
-                        })
-                    }
+                    {pages.length > 1 &&
+                        pages.map((p) => {
+                            return (
+                                <PaginationItem>
+                                    <PaginationLink
+                                        onClick={() => {
+                                            changePage(p);
+                                        }}
+                                        className={
+                                            currentPage === p && style.selected
+                                        }
+                                    >
+                                        {p}
+                                    </PaginationLink>
+                                </PaginationItem>
+                            );
+                        })}
                 </Pagination>
             </div>
             <div className={style.containerList}>
                 <div className={style.allRecipes}>
-                    {
-                        !temp && filterRecipe.map((r) => {
-                            return <RecipesItem key={r._id} recipe={r} onChangeRecipe={onChangeRecipe}  />
-                        })
-                    }
+                    {!temp &&
+                        filterRecipe.map((r) => {
+                            return (
+                                <RecipesItem
+                                    key={r._id}
+                                    recipe={r}
+                                    onChangeRecipe={onChangeRecipe}
+                                />
+                            );
+                        })}
                 </div>
             </div>
             <div className={style.pagination}>
                 <Pagination aria-label="Page navigation example">
-                    {
-                        pages.length > 1 && pages.map(p => {
-                            return <PaginationItem>
-                                <PaginationLink onClick={() => { changePage(p) }} className={currentPage === p && style.selected}>{p}</PaginationLink>
-                            </PaginationItem>
-                        })
-                    }
+                    {pages.length > 1 &&
+                        pages.map((p) => {
+                            return (
+                                <PaginationItem>
+                                    <PaginationLink
+                                        onClick={() => {
+                                            changePage(p);
+                                        }}
+                                        className={
+                                            currentPage === p && style.selected
+                                        }
+                                    >
+                                        {p}
+                                    </PaginationLink>
+                                </PaginationItem>
+                            );
+                        })}
                 </Pagination>
             </div>
         </Row>
     );
-}
-
+};
 
 export default List;

@@ -1,21 +1,8 @@
-import React, { useState } from 'react';
-import style from './AddRecipe.module.css';
-import { Field, reduxForm, FieldArray } from 'redux-form';
-import { FieldInput, FieldTextarea, FieldSelect } from './../../common/utils/utils';
-import { Redirect } from 'react-router-dom';
-import { require, minValues } from './../../common/validates/validates';
-import { renderIngredients } from './../../common/utils/renderIngredients';
-import { renderInstructions } from './../../common/utils/renderInstructions';
-import ButtonBox from './../../common/utils/ButtonBox';
-import { Form } from 'reactstrap';
-import { useFormControl } from '@material-ui/core';
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import axios from 'axios';
-
-
+import axios from "axios";
 
 // const min = minValues(2);
-
 
 // const FieldArraysForm = props => {
 //     const { handleSubmit, pristine, reset, submitting } = props;
@@ -78,11 +65,10 @@ import axios from 'axios';
 
 //     if(props.user.user.id) {
 //         idUserRecipe = props.user.user.id;
-//     } 
+//     }
 //     else {
 //         idUserRecipe = props.user.user._id
 //     }
-
 
 //     let onSubmit = (formData) => {
 //         let recipeData = {
@@ -122,63 +108,92 @@ import axios from 'axios';
 // })(FieldArraysForm);
 
 const AddRecipe = () => {
-    const categories = ["Первые блюда", "Вторые блюда", "Салаты", "Закуски", "Десерты", "Выпечка", "Соусы", "Напитки", "Другие"];
+    const categories = [
+        "Первые блюда",
+        "Вторые блюда",
+        "Салаты",
+        "Закуски",
+        "Десерты",
+        "Выпечка",
+        "Соусы",
+        "Напитки",
+        "Другие",
+    ];
     const { register, handleSubmit } = useForm();
     const [photoImg, setPhotoImg] = useState([]);
 
     const onChangeImg = (e) => {
         setPhotoImg(e.target.files[0]);
-    }
+    };
 
-    console.log(photoImg, 'photoImg');
+    console.log(photoImg, "photoImg");
 
     const onSubmit = (data) => {
-        console.log(data, 'data');
+        console.log(data, "data");
         const formData = new FormData();
-        formData.append('title', data.title);
-        formData.append('category', data.categories);
-        formData.append('description', data.description);
-        formData.append('img', photoImg);
-        console.log(photoImg, 'photoImg function')
+        formData.append("title", data.title);
+        formData.append("category", data.categories);
+        formData.append("description", data.description);
+        formData.append("img", photoImg);
+        console.log(photoImg, "photoImg function");
         // const buffer = new ArrayBuffer(photoImg);
         // console.log(buffer, 'buffer');
 
-        const recipe = {
-            title: data.title,
-            categories: data.categories,
-            description: data.description,
-            img: data.photo 
-        }
+        // const recipe = {
+        //     title: data.title,
+        //     categories: data.categories,
+        //     description: data.description,
+        //     img: data.photo,
+        // };
 
         // console.log(recipe)
         // formData.append('recipe', recipe);
-        console.log(formData, 'formData')
+        console.log(formData, "formData");
 
-        axios.post('/api/recipes', formData)
-             .then(res => {
+        axios
+            .post("/api/recipes", formData)
+            .then((res) => {
                 console.log(res);
-             })
-             .catch(err => {
+            })
+            .catch((err) => {
                 console.log(err);
-             });
+            });
     };
 
     return (
         <div>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <input {...register("title")} type="text" placeholder="title of dish" />
+                <input
+                    {...register("title")}
+                    type="text"
+                    placeholder="title of dish"
+                />
                 <select {...register("categories")}>
                     <option value="">Select categories</option>
-                    {categories.map(cat => {
-                        return <option value={cat} key={cat}>{cat}</option>
+                    {categories.map((cat) => {
+                        return (
+                            <option value={cat} key={cat}>
+                                {cat}
+                            </option>
+                        );
                     })}
                 </select>
-                <input onChange={onChangeImg} accept="image/*" type="file" placeholder="photo" />
-                <textarea {...register("description")} cols="30" rows="10" placeholder='description'></textarea>
-                <input type="submit" placeholder='send' />
+                <input
+                    onChange={onChangeImg}
+                    accept="image/*"
+                    type="file"
+                    placeholder="photo"
+                />
+                <textarea
+                    {...register("description")}
+                    cols="30"
+                    rows="10"
+                    placeholder="description"
+                ></textarea>
+                <input type="submit" placeholder="send" />
             </form>
         </div>
-    )
-}
+    );
+};
 
 export default AddRecipe;

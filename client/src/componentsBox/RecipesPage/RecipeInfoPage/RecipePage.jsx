@@ -31,7 +31,7 @@ const RecipePage = () => {
 
     useEffect(() => {
         refreshRecipe();
-    }, []);
+    }, [refreshRecipe]);
 
     useEffect(() => {
         updateRefreshRecipe();
@@ -40,8 +40,6 @@ const RecipePage = () => {
     if (params.id !== undefined && !currentRecipe) {
         return <>Loading...</>;
     }
-
-    console.log(currentRecipe, "currentRecipe");
 
     return (
         <Recipe

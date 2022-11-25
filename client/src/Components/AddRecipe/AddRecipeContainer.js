@@ -1,16 +1,13 @@
-import React from 'react';
-import AddRecipe from './AddRecipe';
-import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-import { addRecipeThunk, getItems } from './../../store/actions/itemAction';
+import React from "react";
+import AddRecipe from "./AddRecipe";
+import { connect } from "react-redux";
+import { addRecipeThunk, getItems } from "./../../store/actions/itemAction";
 
 class AddRecipeContainer extends React.Component {
     componentDidMount() {
         window.scrollTo(0, 0);
         this.props.getItems();
     }
-
-
 
     render() {
         // if (!this.props.user.user) {
@@ -27,17 +24,18 @@ class AddRecipeContainer extends React.Component {
                     addRecipe={this.props.addRecipeThunk}
                 />
             </div>
-        )
+        );
     }
 }
-
 
 const mapStateToProps = (state) => {
     return {
         recipesId: state.recipes.recipes,
         isAuthenticated: state.auth.isAuthenticated,
-        user: state.auth
-    }
-}
+        user: state.auth,
+    };
+};
 
-export default connect(mapStateToProps, { addRecipeThunk, getItems })(AddRecipeContainer);
+export default connect(mapStateToProps, { addRecipeThunk, getItems })(
+    AddRecipeContainer
+);
