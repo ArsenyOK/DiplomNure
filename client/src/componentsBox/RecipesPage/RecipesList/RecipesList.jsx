@@ -37,7 +37,7 @@ const RecipesList = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
         dispatch(getItemsByPages(currentPage, pageSize, params.catg));
-    }, []);
+    }, [params]);
 
     if (loading) {
         return <CircularProgress size={50} />;
