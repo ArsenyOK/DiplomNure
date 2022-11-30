@@ -2,25 +2,29 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { categoriesArray } from "../Header/common/dataList";
+import { useSelector } from "react-redux";
 
 const AddNewRecipe = () => {
     const { register, handleSubmit } = useForm();
     const [photoImg, setPhotoImg] = useState([]);
+    const { user } = useSelector((store) => store.auth);
 
     const onChangeImg = (e) => {
         setPhotoImg(e.target.files[0]);
     };
 
-    console.log(photoImg, "photoImg");
-
     const onSubmit = (data) => {
         console.log(data, "data");
+        const userId = user._id;
         const formData = new FormData();
-        formData.append("title", data.title);
-        formData.append("category", data.categories);
-        formData.append("description", data.description);
-        formData.append("img", photoImg);
-        console.log(photoImg, "photoImg function");
+        console.log(userId);
+        if (userId) {
+            formData.append("title", data.title);
+            formData.append("userId", userId);
+            formData.append("category", data.categories);
+            formData.append("description", data.description);
+            formData.append("img", photoImg);
+        }
         // const buffer = new ArrayBuffer(photoImg);
         // console.log(buffer, 'buffer');
 
@@ -33,8 +37,6 @@ const AddNewRecipe = () => {
 
         // console.log(recipe)
         // formData.append('recipe', recipe);
-        console.log(formData, "formData");
-
         axios
             .post("/api/recipes", formData)
             .then((res) => {

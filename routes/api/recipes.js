@@ -68,6 +68,22 @@ app.get(`/:id`, (req, res) => {
   });
 });
 
+app.get("/recipes-user/:idUser", (req, res) => {
+  const userId = req.params.idUser;
+
+  Recipe.find().then((recipes) => {
+    const userRecipes = recipes.filter(
+      (item) => item.CreatedByUserId === userId
+    );
+
+    if (userRecipes.length > 0) {
+      res.json(userRecipes);
+    } else {
+      res.json("Nothing");
+    }
+  });
+});
+
 app.get(`/edit-recipe/:id`, (req, res) => {
   const id = req.params.id;
   let details;
@@ -93,17 +109,16 @@ app.post(`/`, img.single("img"), async (req, res) => {
     title: req.body.title,
     category: req.body.category,
     description: req.body.description,
+    CreatedByUserId: req.body.userId,
     img: req.file.buffer,
   });
 
   // recipeModel.img = req.file.buffer;
 
-  // res.send(recipeModel, 'recipeModel');
-
   try {
     recipeModel.save().then((recipe) => {
-      res.send("Recipes is uploaded Success!");
       res.send(recipe);
+      res.send("Recipes is uploaded Success!");
     });
   } catch (e) {
     res.send("Errors!!!", e);

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getItems } from "../../store/actions/itemAction";
 import CircularProgress from "@mui/material/CircularProgress";
+import axios from "axios";
 import {
     BoxAddRecipe,
     BoxUserInfo,
@@ -12,6 +13,7 @@ import { Button, TextField } from "@mui/material";
 import { CustomBox } from "../styled-components";
 import { updateUserData } from "../../store/actions/authActions";
 import { useHistory } from "react-router-dom";
+import { useCallback } from "react";
 
 const UserPage = () => {
     const dispatch = useDispatch();
@@ -28,6 +30,19 @@ const UserPage = () => {
     // const onChangeImg = (e) => {
     //     setPhotoImg(e.target.files[0]);
     // }
+
+    const getUserRecipes = useCallback(() => {
+        if (user && user._id) {
+            axios
+                .get(`/api/recipes/recipes-user/${user._id}`)
+                .then((res) => {
+                    console.log(res, "res");
+                })
+                .catch((err) => {
+                    console.log(err, "err");
+                });
+        }
+    }, [user]);
 
     const goToAddRecipe = () => {
         history.push("/add-recipe");
@@ -85,6 +100,10 @@ const UserPage = () => {
             setUserEmail(user.email);
         }
     }, [user]);
+
+    useEffect(() => {
+        getUserRecipes();
+    }, [getUserRecipes]);
 
     if (!user) {
         return (
