@@ -16,6 +16,7 @@ import Footer from "./componentsBox/Footer/Footer";
 import UserPage from "./componentsBox/UserTab/UserPage";
 import RecipesList from "./componentsBox/RecipesPage/RecipesList/RecipesList";
 import RecipePage from "./componentsBox/RecipesPage/RecipeInfoPage/RecipePage";
+import AddNewRecipe from "./componentsBox/AddRecipeComponent/AddNewRecipe";
 
 const App = () => {
     useEffect(() => {
@@ -50,9 +51,9 @@ const App = () => {
                             }}
                         />
                         <Route
-                            path="/addrecipe"
+                            path="/add-recipe"
                             render={() => {
-                                return <AddRecipeContainer />;
+                                return <AddNewRecipe />;
                             }}
                         />
                         <Route

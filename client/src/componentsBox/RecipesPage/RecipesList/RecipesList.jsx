@@ -19,8 +19,6 @@ const RecipesList = () => {
     const dispatch = useDispatch();
     const params = useParams();
 
-    console.log(params, " params");
-
     const onChangePageRecipes = (p) => {
         window.scrollTo(0, 0);
         dispatch(setItemsLoading());

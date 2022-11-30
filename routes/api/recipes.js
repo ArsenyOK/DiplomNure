@@ -8,7 +8,7 @@ const img = multer({
     fileSize: 1000000,
   },
   fileFilter(req, file, cb) {
-    if (!file.originalname.match(/\.(jpg|png|JPG|PNG|JPEG|jpeg)$/))
+    if (!file.originalname.match(/\.(jpg|png|webp|JPG|PNG|JPEG|jpeg|WEBP)$/))
       return cb(new Error("This is not a correct format of the file"));
     cb(undefined, true);
   },

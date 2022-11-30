@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const ContainerUserPage = styled.div`
     h2 {
@@ -6,9 +6,7 @@ export const ContainerUserPage = styled.div`
     }
 `;
 
-export const BoxUserInfo = styled.div`
-
-`;
+export const BoxUserInfo = styled.div``;
 
 export const ContainerBtnUser = styled.div`
     display: flex;
@@ -16,4 +14,8 @@ export const ContainerBtnUser = styled.div`
     button:first-child {
         margin-right: 10px;
     }
+`;
+
+export const BoxAddRecipe = styled.div`
+    margin-top: 30px;
 `;

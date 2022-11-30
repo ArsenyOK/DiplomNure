@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getItems } from "../../store/actions/itemAction";
 import CircularProgress from "@mui/material/CircularProgress";
 import {
+    BoxAddRecipe,
     BoxUserInfo,
     ContainerBtnUser,
     ContainerUserPage,
@@ -10,9 +11,11 @@ import {
 import { Button, TextField } from "@mui/material";
 import { CustomBox } from "../styled-components";
 import { updateUserData } from "../../store/actions/authActions";
+import { useHistory } from "react-router-dom";
 
 const UserPage = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const [editMode, setEditMode] = useState(false);
     const [userName, setUserName] = useState("");
     const [userEmail, setUserEmail] = useState("");
@@ -25,6 +28,10 @@ const UserPage = () => {
     // const onChangeImg = (e) => {
     //     setPhotoImg(e.target.files[0]);
     // }
+
+    const goToAddRecipe = () => {
+        history.push("/add-recipe");
+    };
 
     const onChangeName = (e) => {
         setUserName(e.target.value);
@@ -162,6 +169,15 @@ const UserPage = () => {
                     )
                 )}
             </form>
+            <BoxAddRecipe>
+                <Button
+                    onClick={goToAddRecipe}
+                    variant="contained"
+                    color="success"
+                >
+                    Add Recipe
+                </Button>
+            </BoxAddRecipe>
         </ContainerUserPage>
     );
 };
