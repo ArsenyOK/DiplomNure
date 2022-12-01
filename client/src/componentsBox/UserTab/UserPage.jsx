@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getItems } from "../../store/actions/itemAction";
 import CircularProgress from "@mui/material/CircularProgress";
-import axios from "axios";
 import {
     BoxAddRecipe,
     BoxUserInfo,
@@ -12,8 +11,8 @@ import {
 import { Button, TextField } from "@mui/material";
 import { CustomBox } from "../styled-components";
 import { updateUserData } from "../../store/actions/authActions";
-import { useHistory } from "react-router-dom";
-import { useCallback } from "react";
+import { Redirect, useHistory } from "react-router-dom";
+import ListOwnRecipes from "../ListOwnRecipes/OwnRecipes/ListOwnRecipes";
 
 const UserPage = () => {
     const dispatch = useDispatch();
@@ -21,28 +20,16 @@ const UserPage = () => {
     const [editMode, setEditMode] = useState(false);
     const [userName, setUserName] = useState("");
     const [userEmail, setUserEmail] = useState("");
-    // const [photoImg, setPhotoImg] = useState([]);
+    const [photoImg, setPhotoImg] = useState([]);
+    const [showRecipes, setShowRecipes] = useState(false);
 
     const { user, isLoading } = useSelector((store) => store.auth);
     // const { recipes } = useSelector((store) => store.recipes);
     const { msg } = useSelector((store) => store.error);
 
-    // const onChangeImg = (e) => {
-    //     setPhotoImg(e.target.files[0]);
-    // }
-
-    const getUserRecipes = useCallback(() => {
-        if (user && user._id) {
-            axios
-                .get(`/api/recipes/recipes-user/${user._id}`)
-                .then((res) => {
-                    console.log(res, "res");
-                })
-                .catch((err) => {
-                    console.log(err, "err");
-                });
-        }
-    }, [user]);
+    const onChangeImg = (e) => {
+        setPhotoImg(e.target.files[0]);
+    };
 
     const goToAddRecipe = () => {
         history.push("/add-recipe");
@@ -66,23 +53,27 @@ const UserPage = () => {
         setUserEmail(user.email);
     };
 
+    const handleShowRecipes = () => {
+        setShowRecipes((prev) => !prev);
+    };
+
     const onSubmit = (e) => {
         e.preventDefault();
-        // const formData = new FormData();
-        // formData.append('name', userName);
-        // formData.append('email', userEmail);
-        // formData.append('avatar', photoImg);
+        const formData = new FormData();
 
-        // console.log(formData.get('avatar'))
+        if (userName !== "" && userEmail !== "" && photoImg.length !== 0) {
+            console.log(1);
+            // const userData = {
+            //     name: userName,
+            //     email: userEmail,
+            //     avatar: photoImg,
+            // };
 
-        if (userName !== "" && userEmail !== "") {
-            const userData = {
-                name: userName,
-                email: userEmail,
-                // avatar: photoImg
-            };
+            formData.append("name", userName);
+            formData.append("email", userEmail);
+            formData.append("avatar", photoImg);
 
-            dispatch(updateUserData(userData, user._id));
+            dispatch(updateUserData(formData, user._id));
 
             if (!!msg) {
                 onCloseEditMode();
@@ -101,21 +92,21 @@ const UserPage = () => {
         }
     }, [user]);
 
-    useEffect(() => {
-        getUserRecipes();
-    }, [getUserRecipes]);
-
     if (!user) {
-        return (
-            <div
-                style={{
-                    display: "flex",
-                    justifyContent: "center",
-                }}
-            >
-                <CircularProgress size={50} />
-            </div>
-        );
+        if (msg === "No token, authorization denied") {
+            return <Redirect to="/" />;
+        } else {
+            return (
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "center",
+                    }}
+                >
+                    <CircularProgress size={50} />
+                </div>
+            );
+        }
     }
 
     return (
@@ -146,9 +137,14 @@ const UserPage = () => {
                                         variant="outlined"
                                     />
                                 </CustomBox>
-                                {/* <CustomBox>
-                                <input onChange={(e) => onChangeImg(e)} accept="image/*" type="file" placeholder="photo" />
-                            </CustomBox> */}
+                                <CustomBox>
+                                    <input
+                                        onChange={(e) => onChangeImg(e)}
+                                        accept="image/*"
+                                        type="file"
+                                        placeholder="photo"
+                                    />
+                                </CustomBox>
                             </>
                         )}
                     </BoxUserInfo>
@@ -197,6 +193,18 @@ const UserPage = () => {
                     Add Recipe
                 </Button>
             </BoxAddRecipe>
+            <BoxAddRecipe>
+                <Button
+                    onClick={handleShowRecipes}
+                    variant="contained"
+                    color="success"
+                >
+                    See All your recipes
+                </Button>
+            </BoxAddRecipe>
+            {showRecipes && (
+                <ListOwnRecipes user={user} showRecipes={showRecipes} />
+            )}
         </ContainerUserPage>
     );
 };

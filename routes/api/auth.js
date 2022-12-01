@@ -3,7 +3,19 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const config = require("config");
 const jwt = require("jsonwebtoken");
+const multer = require("multer");
 const auth = require("../../middleware/auth");
+
+const img = multer({
+  limits: {
+    fileSize: 1000000,
+  },
+  fileFilter(req, file, cb) {
+    if (!file.originalname.match(/\.(jpg|png|webp|JPG|PNG|JPEG|jpeg|WEBP)$/))
+      return cb(new Error("This is not a correct format of the file"));
+    cb(undefined, true);
+  },
+});
 
 // User Model
 const User = require("../../models/User");
@@ -58,8 +70,14 @@ router.get("/user", auth, (req, res) => {
     .then((user) => res.json(user));
 });
 
-router.put("/user/:id", async (req, res) => {
+router.put("/user/:id", img.single("avatar"), async (req, res) => {
   const { id } = req.params;
+
+  // const updatedUser = {
+  //   name: req.body.name,
+  //   email: req.body.email,
+  //   avatar: req.body.avatar,
+  // };
 
   let user = await User.findByIdAndUpdate(id, req.body);
 

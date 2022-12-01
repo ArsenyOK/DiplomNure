@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { categoriesArray } from "../Header/common/dataList";
 import { useSelector } from "react-redux";
+import BackButton from "../common/BackButton/BackButton";
 
 const AddNewRecipe = () => {
     const { register, handleSubmit } = useForm();
@@ -14,10 +15,9 @@ const AddNewRecipe = () => {
     };
 
     const onSubmit = (data) => {
-        console.log(data, "data");
         const userId = user._id;
         const formData = new FormData();
-        console.log(userId);
+
         if (userId) {
             formData.append("title", data.title);
             formData.append("userId", userId);
@@ -49,6 +49,7 @@ const AddNewRecipe = () => {
 
     return (
         <div>
+            <BackButton color={"#2E7D32"} />
             <form onSubmit={handleSubmit(onSubmit)}>
                 <input
                     {...register("title")}
