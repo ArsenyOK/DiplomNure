@@ -22,6 +22,10 @@ const recipeSchema = new Schema({
     type: String,
     required: true,
   },
+  likes: {
+    type: [String],
+    required: true,
+  },
   Ingredients: [],
   instructions: [],
 });

@@ -111,6 +111,7 @@ app.post(`/`, img.single("img"), async (req, res) => {
     description: req.body.description,
     CreatedByUserId: req.body.userId,
     img: req.file.buffer,
+    likes: req.body.likes,
   });
 
   // recipeModel.img = req.file.buffer;
@@ -135,6 +136,16 @@ app.put(`/update-recipe/:id`, async (req, res) => {
     recipe,
   });
 });
+
+// app.put(`/update-recipe-likes/:id`, async (req, res) => {
+//   const { id } = req.params;
+//   let recipe = await Recipe.findByIdAndUpdate(id, req.body);
+
+//   return res.status(202).send({
+//     error: false,
+//     recipe,
+//   });
+// });
 
 app.delete(`/:id`, (req, res) => {
   Recipe.findByIdAndDelete(req.params.id)

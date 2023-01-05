@@ -4,9 +4,23 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
+import axios from "axios";
 
-const OwnItemRecipe = ({ recipe }) => {
+const OwnItemRecipe = ({ recipe, getUserRecipes }) => {
     const img = new Buffer.from(recipe.img.data).toString("base64");
+
+    const removeRecipeById = (id) => {
+        axios
+            .delete(`/api/recipes/${id}`)
+            .then((res) => {
+                console.log(res);
+                getUserRecipes();
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
     return (
         <Card sx={{ maxWidth: 200 }}>
             <CardActionArea>
@@ -29,7 +43,11 @@ const OwnItemRecipe = ({ recipe }) => {
                 <Button size="small" color="success">
                     Edit
                 </Button>
-                <Button size="small" color="error">
+                <Button
+                    onClick={() => removeRecipeById(recipe._id)}
+                    size="small"
+                    color="error"
+                >
                     Delete
                 </Button>
             </CardActions>

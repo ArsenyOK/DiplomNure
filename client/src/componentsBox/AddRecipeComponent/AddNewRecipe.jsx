@@ -24,6 +24,7 @@ const AddNewRecipe = () => {
             formData.append("category", data.categories);
             formData.append("description", data.description);
             formData.append("img", photoImg);
+            formData.append("likes", []);
         }
         // const buffer = new ArrayBuffer(photoImg);
         // console.log(buffer, 'buffer');
@@ -37,6 +38,7 @@ const AddNewRecipe = () => {
 
         // console.log(recipe)
         // formData.append('recipe', recipe);
+
         axios
             .post("/api/recipes", formData)
             .then((res) => {
