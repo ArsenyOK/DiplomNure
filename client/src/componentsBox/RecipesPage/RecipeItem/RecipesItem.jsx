@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -9,51 +9,68 @@ import Typography from "@material-ui/core/Typography";
 import style from "./../../../Components/List/List.module.css";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import HeartIcon from "../../IconsSvg/HeartIcon/HeartIcon";
+import { useCallback } from "react";
+import { ContainerLikes } from "./RecipesItemStyled";
 
 const RecipesItem = ({ onChangeRecipe, recipe }) => {
     const img = new Buffer.from(recipe.img.data).toString("base64");
-    const { user } = useSelector((store) => store.auth);
     const url = `/recipe/${recipe._id}`;
+
+    const { user } = useSelector((store) => store.auth);
+
     const [like, setLike] = useState(recipe.likes);
     const [toggleLike, setToggleLike] = useState(false);
 
-    const likeRecipe = (id) => {
-        if (like.includes(id)) {
-            const arrLikes = like.filter((item) => item !== id);
-            setLike(arrLikes);
-            console.log(arrLikes, "false arrLikes");
+    const likeRecipe = useCallback(
+        (id) => {
+            let userId = user.id || user._id;
+            if (userId) {
+                if (like.includes(userId)) {
+                    const arrLikes = like.filter((item) => item !== userId);
+                    setLike(arrLikes);
 
-            setToggleLike(false);
+                    axios
+                        .put(`/api/recipes/update-recipe/${recipe._id}`, {
+                            likes: arrLikes,
+                        })
+                        .then((res) => {
+                            console.log(res);
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                        });
+                } else {
+                    const arrLikes = [...like];
+                    arrLikes.push(userId);
+                    setLike(arrLikes);
 
-            axios
-                .put(`/api/recipes/update-recipe/${recipe._id}`, {
-                    likes: arrLikes,
-                })
-                .then((res) => {
-                    console.log(res);
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-        } else {
-            const arrLikes = [...like];
-            arrLikes.push(id);
-            setLike(arrLikes);
-            console.log(arrLikes, "true arrLikes");
-            setToggleLike(false);
+                    axios
+                        .put(`/api/recipes/update-recipe/${recipe._id}`, {
+                            likes: arrLikes,
+                        })
+                        .then((res) => {
+                            console.log(res);
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                        });
+                }
+            }
+        },
+        [user, like]
+    );
 
-            axios
-                .put(`/api/recipes/update-recipe/${recipe._id}`, {
-                    likes: arrLikes,
-                })
-                .then((res) => {
-                    console.log(res);
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
+    useEffect(() => {
+        if (user !== null && like) {
+            let userId = user.id || user._id;
+            if (like.includes(userId)) {
+                setToggleLike(true);
+            } else {
+                setToggleLike(false);
+            }
         }
-    };
+    }, [like, user]);
 
     return (
         <Card className={style.card}>
@@ -95,8 +112,17 @@ const RecipesItem = ({ onChangeRecipe, recipe }) => {
             </CardActions>
             {user && recipe.likes !== undefined && (
                 <div>
-                    <p>likes: {like.length}</p>
-                    <button onClick={() => likeRecipe(user._id)}>Like</button>
+                    <ContainerLikes>
+                        <HeartIcon
+                            click={() => likeRecipe(user._id)}
+                            width="20px"
+                            height="20px"
+                            color="#EB3234"
+                            toggleBtn={toggleLike}
+                        />
+
+                        <p>{like.length}</p>
+                    </ContainerLikes>
                 </div>
             )}
         </Card>

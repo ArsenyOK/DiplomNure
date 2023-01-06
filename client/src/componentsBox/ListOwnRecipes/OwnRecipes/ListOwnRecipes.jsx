@@ -43,16 +43,19 @@ const ListOwnRecipes = ({ user, showRecipes }) => {
 
     return (
         <ContainerListOwnRecipes>
-            {recipes &&
-                recipes.map((item, index) => {
-                    return (
-                        <OwnItemRecipe
-                            getUserRecipes={getUserRecipes}
-                            key={index}
-                            recipe={item}
-                        />
-                    );
-                })}
+            {recipes
+                ? recipes.length > 0
+                    ? recipes.map((item, index) => {
+                          return (
+                              <OwnItemRecipe
+                                  getUserRecipes={getUserRecipes}
+                                  key={index}
+                                  recipe={item}
+                              />
+                          );
+                      })
+                    : "No Items"
+                : "No Items"}
         </ContainerListOwnRecipes>
     );
 };
