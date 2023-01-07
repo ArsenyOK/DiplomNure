@@ -68,6 +68,21 @@ app.get(`/:id`, (req, res) => {
   });
 });
 
+app.get("/popular-recipes/:sort", (req, res) => {
+  const sort = req.params.sort;
+  Recipe.find().then((recipes) => {
+    const popularRecipes = recipes.sort((a, b) => {
+      if (sort === "more") {
+        return b.likes.length - a.likes.length;
+      } else {
+        return a.likes.length - b.likes.length;
+      }
+    });
+
+    res.json(popularRecipes);
+  });
+});
+
 app.get("/recipes-user/:idUser", (req, res) => {
   const userId = req.params.idUser;
 
