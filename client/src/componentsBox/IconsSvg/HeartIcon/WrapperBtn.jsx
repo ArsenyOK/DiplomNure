@@ -5,7 +5,6 @@ export const WrapperBtn = styled(IconButton)`
     svg[data-testid="FavoriteBorderIcon"] {
         path {
             transition: all 0.2s ease;
-            // color: ${(props) => props.btncolor};
             background: ${(props) => props.btncolor};
         }
     }
@@ -14,7 +13,6 @@ export const WrapperBtn = styled(IconButton)`
         path {
             transition: all 0.2s ease;
             color: ${(props) => props.btncolor};
-            // background: ${(props) => props.btncolor};
         }
     }
 `;

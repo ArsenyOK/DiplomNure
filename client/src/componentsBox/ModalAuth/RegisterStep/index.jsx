@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import ErrorMessage from "../../common/ErrorMessage/ErrorMessage";
 import { useDispatch, useSelector } from "react-redux";
 import { register as registerUser } from "./../../../store/actions/authActions";
+import CustomBtn from "../../common/CustomBtn/CustomBtn";
 
 const RegisterStep = ({ handleStepAuth, clearStepOnClose }) => {
     const { isAuthenticated } = useSelector((store) => store.auth);
@@ -77,9 +78,12 @@ const RegisterStep = ({ handleStepAuth, clearStepOnClose }) => {
                         )}
                     </Box>
                     <Box className="field-submit">
-                        <Button variant="contained" type="submit">
-                            Sign up
-                        </Button>
+                        <CustomBtn
+                            text="Sign up"
+                            bg={"#1976d2"}
+                            hover={"#1565c0"}
+                            type={"submit"}
+                        />
                     </Box>
                 </Box>
             </form>

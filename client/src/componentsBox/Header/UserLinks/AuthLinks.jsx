@@ -5,6 +5,7 @@ import { NavLink, useHistory } from "react-router-dom";
 import { Popover, ListItem, List } from "@mui/material";
 import { logout } from "../../../store/actions/authActions";
 import { useDispatch } from "react-redux";
+import CustomBtn from "../../common/CustomBtn/CustomBtn";
 
 const AuthLinks = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -33,9 +34,15 @@ const AuthLinks = () => {
     return (
         <div className="header-list">
             <ul>
-                <Button onClick={handleClick} variant="contained">
-                    Categories
-                </Button>
+                <CustomBtn
+                    text="Categories"
+                    bg={"#1976d2"}
+                    hover={"#1565c0"}
+                    boxShadow={
+                        "0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%)"
+                    }
+                    onClick={handleClick}
+                />
                 <Popover
                     id={id}
                     open={open}

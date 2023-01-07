@@ -5,25 +5,26 @@ import LoginStep from "./LoginStep";
 import { ContentModalLogin } from "./LoginStep/styled";
 import RegisterStep from "./RegisterStep";
 import { ContentModalRegister } from "./RegisterStep/styled";
+import CustomBtn from "../common/CustomBtn/CustomBtn";
 
 const BasicStep = ({ handleStepAuth }) => {
     return (
         <>
             <Box className="container-login">
-                <Button
+                <CustomBtn
+                    text="Login"
+                    bg={"#1976d2"}
+                    hover={"#1565c0"}
                     onClick={() => handleStepAuth("login")}
-                    variant="contained"
-                >
-                    Login
-                </Button>
+                />
             </Box>
             <Box>
-                <Button
+                <CustomBtn
+                    text="Registration"
+                    bg={"#1976d2"}
+                    hover={"#1565c0"}
                     onClick={() => handleStepAuth("register")}
-                    variant="contained"
-                >
-                    Registration
-                </Button>
+                />
             </Box>
         </>
     );

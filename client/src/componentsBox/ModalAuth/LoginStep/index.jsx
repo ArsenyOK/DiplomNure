@@ -6,6 +6,7 @@ import { LoginStepStyled } from "./styled";
 import { login } from "./../../../store/actions/authActions";
 import { useDispatch, useSelector } from "react-redux";
 import ErrorMessage from "../../common/ErrorMessage/ErrorMessage";
+import CustomBtn from "../../common/CustomBtn/CustomBtn";
 
 const LoginStep = ({ handleStepAuth, clearStepOnClose }) => {
     const { isAuthenticated, msg } = useSelector((store) => store.auth);
@@ -57,9 +58,12 @@ const LoginStep = ({ handleStepAuth, clearStepOnClose }) => {
                 </Box>
                 {msg && <ErrorMessage text="Name or Password are wrong!" />}
                 <Box className="field-submit">
-                    <Button type="submit" variant="contained">
-                        Sign in
-                    </Button>
+                    <CustomBtn
+                        text="Sign in"
+                        bg={"#1976d2"}
+                        hover={"#1565c0"}
+                        type={"submit"}
+                    />
                 </Box>
             </form>
         </LoginStepStyled>

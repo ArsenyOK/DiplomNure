@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import { NavLink } from "react-router-dom";
 import { Popover, ListItem, List } from "@mui/material";
 import ModalAuth from "../../ModalAuth/ModalAuth";
+import CustomBtn from "../../common/CustomBtn/CustomBtn";
 
 const GuestLinks = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -27,9 +28,15 @@ const GuestLinks = () => {
     return (
         <div className="header-list">
             <ul>
-                <Button onClick={handleClick} variant="contained">
-                    Categories
-                </Button>
+                <CustomBtn
+                    text="Categories"
+                    bg={"#1976d2"}
+                    hover={"#1565c0"}
+                    boxShadow={
+                        "0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%)"
+                    }
+                    onClick={handleClick}
+                />
                 <Popover
                     id={id}
                     open={open}
@@ -45,7 +52,6 @@ const GuestLinks = () => {
                             <li key={`section-${element}`}>
                                 <ul>
                                     <ListItem onClick={handleClose} key={value}>
-                                        {/* <ListItemText primary={`Item ${element}`} /> */}
                                         {element === "All" ? (
                                             <NavLink to={`/recipes`}>
                                                 All recipes

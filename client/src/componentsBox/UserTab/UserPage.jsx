@@ -13,6 +13,7 @@ import { CustomBox } from "../styled-components";
 import { updateUserData } from "../../store/actions/authActions";
 import { Redirect, useHistory } from "react-router-dom";
 import ListOwnRecipes from "../ListOwnRecipes/OwnRecipes/ListOwnRecipes";
+import CustomBtn from "../common/CustomBtn/CustomBtn";
 
 const UserPage = () => {
     const dispatch = useDispatch();
@@ -162,45 +163,45 @@ const UserPage = () => {
                 )}
                 {editMode ? (
                     <ContainerBtnUser>
-                        <Button type="submit" variant="contained">
-                            Edit
-                        </Button>
-                        <Button
-                            variant="contained"
-                            color="error"
+                        <CustomBtn
+                            hover={"#1565C0"}
+                            bg={"#1976D2"}
+                            text={"Edit"}
+                            type={"submit"}
+                        />
+                        <CustomBtn
+                            hover={"#c62828"}
+                            bg={"#D32F2F"}
+                            text={"Close"}
                             onClick={() => onCloseEditMode()}
-                        >
-                            Close
-                        </Button>
+                        />
                     </ContainerBtnUser>
                 ) : (
                     !isLoading && (
-                        <Button
-                            variant="contained"
+                        <CustomBtn
+                            hover={"#1565C0"}
+                            bg={"#1976D2"}
+                            text={"Edit data"}
                             onClick={() => ChangeEditMode()}
-                        >
-                            Edit data
-                        </Button>
+                        />
                     )
                 )}
             </form>
             <BoxAddRecipe>
-                <Button
+                <CustomBtn
+                    hover={"#1b5e20"}
+                    bg={"#2e7d32"}
+                    text={"Add Recipe"}
                     onClick={goToAddRecipe}
-                    variant="contained"
-                    color="success"
-                >
-                    Add Recipe
-                </Button>
+                />
             </BoxAddRecipe>
             <BoxAddRecipe>
-                <Button
+                <CustomBtn
+                    hover={"#1b5e20"}
+                    bg={"#2e7d32"}
+                    text={"See All your recipes"}
                     onClick={handleShowRecipes}
-                    variant="contained"
-                    color="success"
-                >
-                    See All your recipes
-                </Button>
+                />
             </BoxAddRecipe>
             {showRecipes && (
                 <ListOwnRecipes user={user} showRecipes={showRecipes} />
