@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { categoriesArray } from "../common/dataList";
 import Button from "@mui/material/Button";
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Popover, ListItem, List } from "@mui/material";
 import { logout } from "../../../store/actions/authActions";
 import { useDispatch } from "react-redux";
@@ -10,7 +10,6 @@ import CustomBtn from "../../common/CustomBtn/CustomBtn";
 const AuthLinks = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const dispatch = useDispatch();
-    const history = useHistory();
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -22,10 +21,6 @@ const AuthLinks = () => {
 
     const Logout = () => {
         dispatch(logout());
-    };
-
-    const pushPage = (url) => {
-        history.push(url);
     };
 
     const open = Boolean(anchorEl);
@@ -78,7 +73,6 @@ const AuthLinks = () => {
                 </Popover>
                 <li>About</li>
                 <li>Contact</li>
-                <li onClick={() => pushPage("/user")}>Profile</li>
                 <li onClick={Logout}>Logout</li>
             </ul>
         </div>
